@@ -23,11 +23,24 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
     private Vector3 velocity;
 
     [SerializeField] private TMP_Text nickname;
+
+    [Header("Bullet")]
+    public GameObject bulletPrefab;
+    public Transform firePoint;
     void Awake()
     {
         controller = GetComponent<CharacterController>();
     }
 
+    void Shoot()
+    {
+        photonView.RPC("RPC_Shoot", RpcTarget.All, firePoint.position, firePoint.rotation);
+    }
+    [PunRPC]
+    void RPC_Shoot(Vector3 position, Quaternion rotation)
+    {
+        Instantiate(bulletPrefab, position, rotation);
+    }
     void Start()
     {
         if (!photonView.IsMine)
@@ -71,7 +84,10 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
     void Update()
     {
         // if (!photonView.IsMine) return;
-        
+        if (photonView.IsMine && Input.GetButtonDown("Fire1"))
+        {
+            Shoot();
+        }
         HandleCameraRotation();
         HandleMovement();
     }
