@@ -152,7 +152,6 @@ GameObject:
   - component: {fileID: 1101535153798932896}
   - component: {fileID: 8275408104539923050}
   - component: {fileID: 4499948317571743264}
-  - component: {fileID: 4394547927345342245}
   - component: {fileID: 6558598178672415570}
   - component: {fileID: 551883475073302344}
   m_Layer: 3
@@ -328,16 +327,6 @@ MonoBehaviour:
   minPitch: -40
   maxPitch: 75
   nickname: {fileID: 3450724191113597368}
-  bulletPrefab: {fileID: 722493667580921023, guid: dac5d1a7e39f5da4ba3ce372fef5efa4, type: 3}
-  firePoint: {fileID: 1079864170054389869}
---- !u!81 &4394547927345342245
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 801553088513305751}
-  m_Enabled: 1
 --- !u!114 &6558598178672415570
 MonoBehaviour:
   m_ObjectHideFlags: 0

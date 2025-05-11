@@ -3,10 +3,12 @@ using Photon.Pun;
 using UnityEngine.UI;
 using Photon.Realtime;
 using TMPro;
+using System;
 
 [RequireComponent(typeof(CharacterController))]
-public class PlayerMovement : MonoBehaviourPunCallbacks
+public class PlayerMovement1 : MonoBehaviourPunCallbacks
 {
+    public static event Action OnShoot;
     [Header("Movilidad")]
     public float speed = 5f;
     public float jumpHeight = 1.5f;
@@ -23,24 +25,14 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
     private Vector3 velocity;
 
     [SerializeField] private TMP_Text nickname;
-
-    [Header("Bullet")]
-    public GameObject bulletPrefab;
-    public Transform firePoint;
+    
+    
     void Awake()
     {
         controller = GetComponent<CharacterController>();
     }
 
-    void Shoot()
-    {
-        photonView.RPC("RPC_Shoot", RpcTarget.All, firePoint.position, firePoint.rotation);
-    }
-    [PunRPC]
-    void RPC_Shoot(Vector3 position, Quaternion rotation)
-    {
-        Instantiate(bulletPrefab, position, rotation);
-    }
+   
     void Start()
     {
         if (!photonView.IsMine)
@@ -86,7 +78,8 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
         // if (!photonView.IsMine) return;
         if (photonView.IsMine && Input.GetButtonDown("Fire1"))
         {
-            Shoot();
+            OnShoot?.Invoke();
+         
         }
         HandleCameraRotation();
         HandleMovement();
