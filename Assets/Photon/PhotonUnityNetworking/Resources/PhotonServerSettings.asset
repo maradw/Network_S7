@@ -42,6 +42,8 @@ MonoBehaviour:
   - RPC_SetupPlayer
   - UpdateNickname
   - RPC_Shoot
+  - RPC_ChangeHealth
+  - RPC_HandleShoot
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0

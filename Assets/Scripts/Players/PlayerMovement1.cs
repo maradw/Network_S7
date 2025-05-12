@@ -78,7 +78,7 @@ public class PlayerMovement1 : MonoBehaviourPunCallbacks
         // if (!photonView.IsMine) return;
         if (photonView.IsMine && Input.GetButtonDown("Fire1"))
         {
-            OnShoot?.Invoke();
+           // OnShoot?.Invoke();
          
         }
         HandleCameraRotation();
